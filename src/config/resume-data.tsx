@@ -121,7 +121,7 @@ export const RESUME_DATA = {
         "Coding collaboration platform with AI-powered code answers.",
       link: {
         label: "codespace.forum",
-        href: "hhttps://www.codespace.forum/",
+        href: "https://www.codespace.forum/",
       },
     },
   ],
