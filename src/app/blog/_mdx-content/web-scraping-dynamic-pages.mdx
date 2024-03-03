@@ -1,0 +1,154 @@
+---
+title: "Web scraping dynamic pages"
+author: "Marc M."
+publishDate: "03/03/2024"
+---
+
+While trying to scrap data with Nokigiri (Ruby), I struggled to scrap prices from en ecommerce website. Indeed, the div containing the prices was always empty using Nokigiri in IRB.After many hours of research, I finally ended on checking the same page but without JavaScript enabled.
+
+In google chrome, you need to process the following steps:
+right-click>inspect>Cmd+Shift+P or Ctrl+Shift+P to open the command menu>Disabled Javascript
+By doing so, I didn't see any prices and understood that all the prices were being rendered by some JS scripts after the initial page load.
+
+I then tried to use another tool in Pyhton: Scrapy, and ended with the same conclusion. I discovered Selenium which is not your typicall web scraping tool.
+
+---
+
+Scrapy and Selenium are both Python libraries used for web scraping, but they serve different purposes and are suited to different types of web scraping tasks. Understanding the differences between these two libraries is crucial for choosing the right tool for your specific needs.
+
+---
+
+## What is Selenium?
+
+Selenium is an open-source automated testing framework primarily used for web applications. It is designed to automate browser actions, which makes it highly effective for interacting with dynamic web content rendered by JavaScript. Selenium is capable of simulating user actions such as scrolling, clicking, and filling out forms, which is essential for navigating through websites that require user interaction. It is particularly useful when dealing with websites that rely heavily on JavaScript for rendering content or when you need to test web applications by simulating user behavior.
+
+## Advantages of Selenium
+
+- **Dynamic Content Handling:** Selenium can interact with dynamic content rendered by JavaScript, making it ideal for scraping modern web applications.
+- **User Simulation:** It can simulate user actions like clicking, scrolling, and form submissions, which is essential for accessing content that requires interaction.
+- **Browser Compatibility:** Selenium supports multiple browsers and platforms, providing flexibility in testing across different environments 23.
+
+## Disadvantages of Selenium
+
+Resource Intensive: Selenium is slower compared to Scrapy due to the overhead of running a browser and interacting with web pages.
+
+Complexity: It requires more code and understanding of web elements to navigate and extract data compared to Scrapy.
+
+Maintenance: Requires frequent updates to browser drivers and may face compatibility issues with newer browser versions .
+
+## What is Scrapy?
+
+Scrapy is an open-source web crawling framework designed for extracting data from websites. It is built for speed and scalability, making it an excellent choice for large-scale data mining and web scraping tasks. Scrapy is asynchronous, meaning it can handle multiple requests simultaneously, which significantly speeds up the scraping process. It is particularly effective for scraping static pages where data is directly available in the HTML source.
+
+## Advantages of Scrapy
+
+Speed and Scalability: Scrapy is designed for high performance, capable of handling large volumes of data efficiently.
+
+Asynchronous Processing: It can process multiple requests in parallel, making it faster for scraping large amounts of data.
+
+Ease of Use: Scrapy has a simpler setup compared to Selenium and is more straightforward for beginners. It also allows for the extraction of data in various formats like CSV, XML, and JSON.
+
+## Disadvantages of Scrapy
+
+- **Limited JavaScript Support:** Scrapy does not execute JavaScript by default, which can be a limitation for scraping dynamic websites.
+- **Learning Curve:** Scrapy requires a basic understanding of object-oriented programming due to its use of custom classes and methods.
+- **Resource Efficiency:** While Scrapy is more efficient than Selenium in terms of resource usage, it still requires significant processing power for large-scale scraping tasks.
+
+## Choosing Between Selenium and Scrapy
+
+The choice between Selenium and Scrapy depends on the specific requirements of your web scraping project:
+
+- **Use Selenium** when you need to interact with dynamic web content, simulate user actions, or when dealing with websites that require JavaScript rendering.
+- **Use Scrapy** for large-scale data extraction from static pages, when speed and scalability are critical, or when you need to scrape data in bulk from multiple pages.
+
+Both libraries have their strengths and weaknesses, and the best choice depends on the nature of the web scraping task at hand.
+
+## Code used
+
+```
+import json
+import csv
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+
+ldlc_url = "<https://www.some-e-commerce-website.com>"
+
+def scrape_with_selenium(url, json_output_file, csv_output_file):
+    options = Options()
+    options.headless = False  # Set to True for headless mode
+    driver = webdriver.Chrome(options=options)
+
+    driver.get(url)
+
+    time.sleep(3)
+
+    prices = []
+    models = []
+
+    # Scrape prices
+    screens = driver.find_elements(By.CLASS_NAME, "dsp-cell-right")
+    for screen in screens:
+        price = screen.find_element(By.CLASS_NAME, "price")
+        old_price = price.find_elements(By.CLASS_NAME, "old-price")
+        if old_price:
+            new_price = screen.find_element(By.CLASS_NAME, "new-price")
+            prices.append(new_price.text)
+        else:
+            prices.append(price.text)
+
+    # Scrape models
+    model_screen = driver.find_elements(By.CLASS_NAME, "title-3")
+    for model in model_screen:
+        models.append(model.text)
+
+    driver.quit()
+
+    # Check if the lengths of prices and models lists are the same
+    if len(prices) != len(models):
+        print("Error: Lengths of prices and models lists are not the same.")
+        return
+
+    # Combine models and prices into a list of dictionaries
+    data = [{'Model': model, 'Price': price} for model, price in zip(models, prices)]
+
+    # Save data to JSON file
+    with open(json_output_file, 'w') as json_file:
+        json.dump(data, json_file)
+
+    # Save data to CSV file
+    with open(csv_output_file, 'w', newline='') as csv_file:
+        fieldnames = ['Model', 'Price']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(data)
+
+    #Provide the file names for JSON and CSV output
+    json_output_file = 'models_and_prices.json'
+    csv_output_file = 'models_and_prices.csv'
+
+    #Call the function with URLs and file names
+    scrape_with_selenium(ldlc_url, json_output_file, csv_output_file)
+
+```
+
+## Recap
+
+**_Scrapy vs Selenium_**
+
+1.  **Features**: Uses CSS selectors and XPath expressions to extract data || Uses web browsers to interact with websites
+2.  **Crawling Approach**: Easier to learn and use for simpler websites || Supports JavaScript rendering through browser automation
+3.  **JavaScript Rendering**: Does not support JavaScript rendering by default || Steeper learning curve due to browser interaction
+4.  **Ease of Use**: Easier to learn and use for simpler websites || Scalability can be limited by browser resource usage
+
+5.  **Scalability**: Highly scalable for large-scale crawling projects || Large and active community
+6.  **Community Support**: Large and active community || Large and active community
+7.  **Suitable for**: Static websites and websites with limited JavaScript || Complex websites with dynamic content and heavy JavaScript usage
+
+```
+If my only tool is a hammer, then every problem is a nail
+
+```
+
+<center>Happy scraping</center>
