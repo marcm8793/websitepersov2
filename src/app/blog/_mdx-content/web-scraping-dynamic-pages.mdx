@@ -4,7 +4,7 @@ author: "Marc M."
 publishDate: "03/03/2024"
 ---
 
-While trying to scrap data with Nokigiri (Ruby), I struggled to scrap prices from en ecommerce website. Indeed, the div containing the prices was always empty using Nokigiri in IRB.After many hours of research, I finally ended on checking the same page but without JavaScript enabled.
+While trying to scrap data with Nokigiri (Ruby), I struggled to scrap prices from en ecommerce website. Indeed, the div containing the prices was always empty using Nokigiri in IRB. After many hours of research, I finally ended on checking the same page but without JavaScript enabled.
 
 In google chrome, you need to process the following steps:
 right-click>inspect>Cmd+Shift+P or Ctrl+Shift+P to open the command menu>Disabled Javascript
@@ -16,44 +16,56 @@ I then tried to use another tool in Pyhton: Scrapy, and ended with the same conc
 
 Scrapy and Selenium are both Python libraries used for web scraping, but they serve different purposes and are suited to different types of web scraping tasks. Understanding the differences between these two libraries is crucial for choosing the right tool for your specific needs.
 
----
-
+<br />
+<br />
 ## What is Selenium?
 
 Selenium is an open-source automated testing framework primarily used for web applications. It is designed to automate browser actions, which makes it highly effective for interacting with dynamic web content rendered by JavaScript. Selenium is capable of simulating user actions such as scrolling, clicking, and filling out forms, which is essential for navigating through websites that require user interaction. It is particularly useful when dealing with websites that rely heavily on JavaScript for rendering content or when you need to test web applications by simulating user behavior.
 
+<br />
+<br />
 ## Advantages of Selenium
 
 - **Dynamic Content Handling:** Selenium can interact with dynamic content rendered by JavaScript, making it ideal for scraping modern web applications.
 - **User Simulation:** It can simulate user actions like clicking, scrolling, and form submissions, which is essential for accessing content that requires interaction.
 - **Browser Compatibility:** Selenium supports multiple browsers and platforms, providing flexibility in testing across different environments 23.
 
+<br />
+<br />
 ## Disadvantages of Selenium
 
-Resource Intensive: Selenium is slower compared to Scrapy due to the overhead of running a browser and interacting with web pages.
+- **Resource Intensive:** Selenium is slower compared to Scrapy due to the overhead of running a browser and interacting with web pages.
 
-Complexity: It requires more code and understanding of web elements to navigate and extract data compared to Scrapy.
+- **Complexity:** It requires more code and understanding of web elements to navigate and extract data compared to Scrapy.
 
-Maintenance: Requires frequent updates to browser drivers and may face compatibility issues with newer browser versions .
+- **Maintenance:** Requires frequent updates to browser drivers and may face compatibility issues with newer browser versions .
 
+<br />
+<br />
 ## What is Scrapy?
 
 Scrapy is an open-source web crawling framework designed for extracting data from websites. It is built for speed and scalability, making it an excellent choice for large-scale data mining and web scraping tasks. Scrapy is asynchronous, meaning it can handle multiple requests simultaneously, which significantly speeds up the scraping process. It is particularly effective for scraping static pages where data is directly available in the HTML source.
 
+<br />
+<br />
 ## Advantages of Scrapy
 
-Speed and Scalability: Scrapy is designed for high performance, capable of handling large volumes of data efficiently.
+- **Speed and Scalability:** Scrapy is designed for high performance, capable of handling large volumes of data efficiently.
 
-Asynchronous Processing: It can process multiple requests in parallel, making it faster for scraping large amounts of data.
+- **Asynchronous Processing:** It can process multiple requests in parallel, making it faster for scraping large amounts of data.
 
-Ease of Use: Scrapy has a simpler setup compared to Selenium and is more straightforward for beginners. It also allows for the extraction of data in various formats like CSV, XML, and JSON.
+- **Ease of Use:** Scrapy has a simpler setup compared to Selenium and is more straightforward for beginners. It also allows for the extraction of data in various formats like CSV, XML, and JSON.
 
+<br />
+<br />
 ## Disadvantages of Scrapy
 
 - **Limited JavaScript Support:** Scrapy does not execute JavaScript by default, which can be a limitation for scraping dynamic websites.
 - **Learning Curve:** Scrapy requires a basic understanding of object-oriented programming due to its use of custom classes and methods.
 - **Resource Efficiency:** While Scrapy is more efficient than Selenium in terms of resource usage, it still requires significant processing power for large-scale scraping tasks.
 
+<br />
+<br />
 ## Choosing Between Selenium and Scrapy
 
 The choice between Selenium and Scrapy depends on the specific requirements of your web scraping project:
@@ -63,6 +75,8 @@ The choice between Selenium and Scrapy depends on the specific requirements of y
 
 Both libraries have their strengths and weaknesses, and the best choice depends on the nature of the web scraping task at hand.
 
+<br />
+<br />
 ## Code used
 
 ```
@@ -133,6 +147,8 @@ def scrape_with_selenium(url, json_output_file, csv_output_file):
 
 ```
 
+<br />
+<br />
 ## Recap
 
 **_Scrapy vs Selenium_**
@@ -151,4 +167,6 @@ If my only tool is a hammer, then every problem is a nail
 
 ```
 
+<br />
+<br />
 <center>Happy scraping</center>

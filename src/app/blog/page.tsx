@@ -5,7 +5,15 @@ import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
 
 export default async function BlogsPage() {
-  const blogs = await getBlogs();
+  let blogs = await getBlogs();
+  blogs = blogs
+    .filter((blog) => blog.frontmatter.publishDate)
+    .sort(
+      (a: any, b: any) =>
+        new Date(b.frontmatter.publishDate).getTime() -
+        new Date(a.frontmatter.publishDate).getTime()
+    );
+
   return (
     <main className="container grid items-center gap-8 pb-8 pt-6 md:py-8 md:pb-10">
       <section className="flex flex-col gap-1 mt-2.5">
@@ -27,7 +35,9 @@ export default async function BlogsPage() {
               <article className="flex flex-col">
                 <div className="flex flex-col">
                   <CardHeader className="">
-                    <CardTitle>{blog.frontmatter.title}</CardTitle>
+                    <CardTitle className="underline decoration-transparent transition duration-300 ease-in-out hover:decoration-inherit">
+                      {blog.frontmatter.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardDescription className="text-right">
                     Published on {formatDate(blog.frontmatter.publishDate)}
