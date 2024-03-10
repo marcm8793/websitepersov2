@@ -9,11 +9,15 @@ import { ThemeProvider } from "@/components/layout/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marcmansour.dev"),
   title: {
+    default: "Portfolio website | Marc Mansour",
     template: "%s | Marc Mansour",
-    default: "Marc Mansour | Portfolio website",
   },
   description: "Web portfolio with AI chatbot",
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

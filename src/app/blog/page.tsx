@@ -3,6 +3,11 @@ import { getBlogs } from "./fetchers";
 import { Separator } from "@/components/ui/separator";
 import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+};
 
 export default async function BlogsPage() {
   let blogs = await getBlogs();

@@ -8,6 +8,17 @@ import { cn, formatDate } from "@/lib/utils";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: { slug: string };
+}): Promise<any> {
+  const blog = await getBlogBySlug(slug);
+  return {
+    title: blog.frontmatter.title,
+  };
+}
+
 export async function generateStaticParams() {
   return getAllBlogSlug();
 }

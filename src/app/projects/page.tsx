@@ -24,6 +24,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Metadata } from "next";
 
 const projects = [
   {
@@ -89,6 +90,10 @@ const projects = [
     ],
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Projects",
+};
 
 const page = () => {
   return (
