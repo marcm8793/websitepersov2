@@ -11,12 +11,14 @@ import {
   SiPrisma,
   SiRadixui,
   SiMongoose,
+  SiAmazons3,
 } from "react-icons/si";
 import {
   BiLogoMongodb,
   BiLogoTypescript,
   BiLogoPostgresql,
 } from "react-icons/bi";
+import { FaCcStripe } from "react-icons/fa";
 
 import {
   Tooltip,
@@ -28,6 +30,24 @@ import { Metadata } from "next";
 
 const projects = [
   {
+    name: "Event App",
+    description: "Event management platform.",
+    image: "/eventapp.png",
+    github: "https://github.com/marcm8793/eventapp",
+    link: "https://eventapp-livid.vercel.app/",
+    tools: [
+      { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
+      { icon: <TbBrandNextjs />, tooltip: "Next.js" },
+      { icon: <SiTailwindcss />, tooltip: "Tailwind CSS" },
+      { icon: <RiOpenaiFill />, tooltip: "OpenAI" },
+      { icon: <SiZod />, tooltip: "Zod" },
+      { icon: <BiLogoMongodb />, tooltip: "MongoDB" },
+      { icon: <SiMongoose />, tooltip: "Mongoose" },
+      { icon: <FaCcStripe />, tooltip: "Stripe" },
+      { icon: <SiAmazons3 />, tooltip: "S3-UploadThing" },
+    ],
+  },
+  {
     name: "Code Space",
     description: "Coding collaboration platform with AI-powered code answers.",
     image: "/CodeSpace.png",
@@ -37,7 +57,6 @@ const projects = [
       { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
       { icon: <TbBrandNextjs />, tooltip: "Next.js" },
       { icon: <SiTailwindcss />, tooltip: "Tailwind CSS" },
-      { icon: <RiOpenaiFill />, tooltip: "OpenAI" },
       { icon: <SiZod />, tooltip: "Zod" },
       { icon: <BiLogoMongodb />, tooltip: "MongoDB" },
       { icon: <SiMongoose />, tooltip: "Mongoose" },
