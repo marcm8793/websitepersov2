@@ -60,6 +60,7 @@ const projects = [
       { icon: <SiZod />, tooltip: "Zod" },
       { icon: <BiLogoMongodb />, tooltip: "MongoDB" },
       { icon: <SiMongoose />, tooltip: "Mongoose" },
+      { icon: <RiOpenaiFill />, tooltip: "OpenAI" },
     ],
   },
   {

@@ -79,7 +79,14 @@ export const RESUME_DATA = {
         "Managed securities accounts for institutional clients. Created and maintained reports for clients and internal use.",
     },
   ],
-  skills: ["JavaScript", "TypeScript", "React/Next.js", "Node.js"],
+  skills: [
+    "JavaScript",
+    "TypeScript",
+    "React/Next.js",
+    "Node.js",
+    "Tailwindcss",
+    "Ruby",
+  ],
   projects: [
     {
       title: "NextApps",
