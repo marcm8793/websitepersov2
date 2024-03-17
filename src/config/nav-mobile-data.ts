@@ -1,4 +1,4 @@
-import { GitHubIcon } from "@/components/icons";
+import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 
 export interface NavItem {
   title: string;
@@ -6,6 +6,7 @@ export interface NavItem {
   disabled?: boolean;
   external?: boolean;
   label?: string;
+  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
 export interface NavItemWithChildren extends NavItem {
@@ -26,14 +27,17 @@ export const docsConfig: DocsConfig = {
     {
       title: "GitHub",
       href: "https://github.com/marcm8793",
+      icon: GitHubIcon,
     },
     {
       title: "LinkedIn",
       href: "https://www.linkedin.com/in/marc-mansour-1b938496/",
+      icon: LinkedInIcon,
     },
     {
-      title: "X/Twitter",
+      title: "Twitter",
       href: "https://twitter.com/Marc87240",
+      icon: XIcon,
     },
     {
       title: "Projects",
@@ -54,7 +58,7 @@ export const docsConfig: DocsConfig = {
   ],
   sidebarNav: [
     {
-      title: "Blog",
+      title: "Blog ▾",
       items: [
         {
           title: "Articles",

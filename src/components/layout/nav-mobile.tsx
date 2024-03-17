@@ -42,8 +42,9 @@ export function NavMobile() {
                     key={item.href}
                     href={item.href}
                     onOpenChange={setOpen}
-                    className="underline decoration-transparent transition duration-300 ease-in-out hover:decoration-inherit"
+                    className="flex underline decoration-transparent transition duration-300 ease-in-out hover:decoration-inherit items-center"
                   >
+                    {item.icon && <item.icon className="mr-2 h-4 w-4" />}
                     {item.title}
                   </MobileLink>
                 )
