@@ -19,11 +19,6 @@ export const routes = [
     Icon: FolderKanban,
   },
   {
-    title: "Blog",
-    href: "/blog",
-    Icon: Book,
-  },
-  {
     title: "About",
     href: "/about",
     Icon: BadgeInfo,

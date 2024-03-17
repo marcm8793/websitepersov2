@@ -17,13 +17,9 @@ import { Separator } from "../ui/separator";
 export const Topbar = () => {
   const [isOpen, setOpen] = useState(false);
   return (
-    <div
-      className={`container px-8 mx-auto justify-center items-center ${
-        isOpen ? "fixed top-0 z-50" : ""
-      } bg-background`}
-    >
+    <div className="container px-8 mx-auto justify-center items-center bg-background">
       <nav className="flex items-start justify-between py-4">
-        <NavMobile isOpen={isOpen} setOpen={setOpen} />
+        <NavMobile />
         <NavDesktop />
         <div className="justify-center items-center flex space-x-2">
           <AIChatButton />
