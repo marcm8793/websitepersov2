@@ -13,11 +13,11 @@ const Page = () => {
         <div className="flex items-center justify-between space-y-2">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">
-              Books I recommend.
+              Books and guides I recommend.
             </h2>
             <p className="text-muted-foreground">
-              Books still exist in the digital age! Here are some I&apos;ve read
-              and that I recommend. 📋
+              Books still exist in the digital age! Here are some as well as
+              guides I&apos;ve read and that I recommend. 📋
             </p>
           </div>
         </div>

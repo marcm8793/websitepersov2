@@ -5,6 +5,7 @@ import { BOOK_data, Book } from "@/config/books-data";
 
 const ReadingList = () => {
   const table = useMantineReactTable<Book>(BOOK_data);
+
   return (
     <>
       <div className="dark:hidden">
