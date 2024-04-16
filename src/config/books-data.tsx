@@ -55,5 +55,12 @@ export const BOOK_data = {
       theme: "React-Native",
       url: "https://drive.google.com/file/d/1mWGl_eGN34RfUIHheRmGoLyu-phkGd3m/view?usp=sharing",
     },
+    {
+      title: "How to setup custom email with CloudFlare and Mailgun",
+      author: "San B",
+      published_year: 2024,
+      theme: "Domains/ Email",
+      url: "https://www.freecodecamp.org/news/how-to-set-up-custom-email/",
+    },
   ] as Book[],
 };
