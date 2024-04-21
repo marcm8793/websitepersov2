@@ -105,7 +105,7 @@ const projects = [
     name: "Personnal Website",
     description: "My projects and journey as a developper.",
     image: "/portfolio2.png",
-    github: "https://github.com/marcm8793/resumeprod",
+    github: "https://github.com/marcm8793/websitepersov2",
     link: "/",
     tools: [
       { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
@@ -140,7 +140,7 @@ const page = () => {
                   <div className="overflow-hidden inline-block rounded-lg">
                     <Image
                       alt="Project Image"
-                      className="object-cover rounded-lg border-1 border-gray-200 shadow-md hover:scale-110 transition-transform duration-500"
+                      className="object-cover rounded-lg border border-gray-700 shadow-md hover:scale-110 transition-transform duration-500"
                       height={200}
                       src={project.image}
                       style={{

@@ -7,6 +7,8 @@ import {
   CardTitle,
 } from "../ui/card";
 
+import { FiExternalLink } from "react-icons/fi";
+
 interface Props {
   title: string;
   description: string;
@@ -28,6 +30,7 @@ export function ProjectCard({ title, description, tags, link }: Props) {
               >
                 {title}{" "}
                 <span className="size-1 rounded-full bg-green-500"></span>
+                <FiExternalLink />
               </a>
             ) : (
               title

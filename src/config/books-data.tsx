@@ -18,7 +18,7 @@ export const BOOK_data = {
       Cell: ({ row }) => (
         <Link
           href={row.original.url}
-          className="flex  items-center justify-between font-bold hover:underline hover:decoration-2"
+          className="flex items-center justify-between font-bold hover:underline hover:decoration-2"
           target="_blank"
           rel="noopener noreferrer"
         >
