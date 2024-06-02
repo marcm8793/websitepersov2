@@ -99,6 +99,14 @@ export default function Page() {
           </p>
         </Section>
         <Section>
+          <h2 className="text-xl font-bold">Skills</h2>
+          <div className="flex flex-wrap gap-1">
+            {RESUME_DATA.skills.map((skill) => {
+              return <Badge key={skill}>{skill}</Badge>;
+            })}
+          </div>
+        </Section>
+        <Section>
           <h2 className="text-xl font-bold">Work Experience</h2>
           {RESUME_DATA.work.map((work) => {
             return (
@@ -145,8 +153,19 @@ export default function Page() {
               <Card key={education.school}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="font-semibold leading-none">
+                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
                       {education.school}
+                      <span className="inline-flex gap-x-1">
+                        {education.badges.map((badge) => (
+                          <Badge
+                            variant="secondary"
+                            className="align-middle text-xs"
+                            key={badge}
+                          >
+                            {badge}
+                          </Badge>
+                        ))}
+                      </span>
                     </h3>
                     <div className="text-sm tabular-nums text-gray-500">
                       {education.start} - {education.end}
@@ -157,14 +176,6 @@ export default function Page() {
               </Card>
             );
           })}
-        </Section>
-        <Section>
-          <h2 className="text-xl font-bold">Skills</h2>
-          <div className="flex flex-wrap gap-1">
-            {RESUME_DATA.skills.map((skill) => {
-              return <Badge key={skill}>{skill}</Badge>;
-            })}
-          </div>
         </Section>
 
         <Section className="print-force-new-page scroll-mb-16">

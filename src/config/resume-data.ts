@@ -35,14 +35,23 @@ export const RESUME_DATA = {
   },
   education: [
     {
+      school: "Le Wagon ",
+      degree: "Web development",
+      badges: ["Developer"],
+      start: "2024",
+      end: "2024",
+    },
+    {
       school: "Université de Limoges",
       degree: "Master 2 (M2) Banques, Risques et Marchés",
+      badges: ["Finance"],
       start: "2015",
       end: "2016",
     },
     {
       school: "University of Birmingham",
       degree: "Master 1 Msc Money, Banking and Finance",
+      badges: ["Finance"],
       start: "2014",
       end: "2015",
     },
