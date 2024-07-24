@@ -27,10 +27,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Topbar />
-          {children}
+          <main className="flex-grow">{children}</main>
           <Toaster />
           <Footer />
         </ThemeProvider>
