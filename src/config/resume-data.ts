@@ -96,6 +96,7 @@ export const RESUME_DATA = {
     "Tailwindcss",
     "Ruby",
   ],
+  languages: ["French", "English"],
   projects: [
     {
       title: "NextApps",

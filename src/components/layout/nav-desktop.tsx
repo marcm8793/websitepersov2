@@ -41,19 +41,7 @@ export function NavDesktop() {
               Blog
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[400px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <div className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md">
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        MM/Blog
-                      </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        Discover new articles and ressources on web development.
-                      </p>
-                    </div>
-                  </NavigationMenuLink>
-                </li>
+              <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[400px] lg:grid-cols-[1fr 1fr]">
                 <ListItem href="/blog" title="Articles">
                   A list of articles on webdev and programming.
                 </ListItem>
