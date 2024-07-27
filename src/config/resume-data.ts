@@ -93,8 +93,11 @@ export const RESUME_DATA = {
     "TypeScript",
     "React/Next.js",
     "Node.js",
+    "Express",
+    "MongoDB",
+    "PostgreSQL",
     "Tailwindcss",
-    "Ruby",
+    "Ruby on Rails",
   ],
   languages: ["French", "English"],
   projects: [

@@ -19,13 +19,15 @@ import {
   SiRadixui,
   SiMongoose,
   SiAmazons3,
+  SiJavascript,
+  SiExpress,
 } from "react-icons/si";
 import {
   BiLogoMongodb,
   BiLogoTypescript,
   BiLogoPostgresql,
 } from "react-icons/bi";
-import { FaCcStripe } from "react-icons/fa";
+import { FaCcStripe, FaServer } from "react-icons/fa";
 
 import {
   Tooltip,
@@ -34,7 +36,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Metadata } from "next";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaReact, FaGoogle } from "react-icons/fa";
 
 const projects = [
   {
@@ -53,6 +55,23 @@ const projects = [
       { icon: <SiMongoose />, tooltip: "Mongoose" },
       { icon: <FaCcStripe />, tooltip: "Stripe" },
       { icon: <SiAmazons3 />, tooltip: "S3-UploadThing" },
+    ],
+  },
+  {
+    name: "MM-AI",
+    description: `Chat with Google Gemini AI, \n
+    project hosted on a VPS server with Ubuntu and CloudPanel`,
+    image: "/mmai.png",
+    github: "https://github.com/marcm8793/mm-ai-chat",
+    link: "https://mm-ai.dev/",
+    tools: [
+      { icon: <SiJavascript />, tooltip: "JavaScript" },
+      { icon: <FaReact />, tooltip: "React" },
+      { icon: <SiExpress />, tooltip: "ExpressJS" },
+      { icon: <BiLogoMongodb />, tooltip: "MongoDB" },
+      { icon: <SiMongoose />, tooltip: "Mongoose" },
+      { icon: <FaGoogle />, tooltip: "Google Gemini" },
+      { icon: <FaServer />, tooltip: "VPS Server" },
     ],
   },
   {
@@ -165,7 +184,7 @@ const page = () => {
                 <div className="flex items-center space-x-2 text-sm">
                   {project.tools?.map((tool, toolIdx) => (
                     <div key={toolIdx} className="space-x-4 ">
-                      <TooltipProvider>
+                      <TooltipProvider delayDuration={0}>
                         <Tooltip>
                           <TooltipTrigger className="cursor-default">
                             {tool.icon}
