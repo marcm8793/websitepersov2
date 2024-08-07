@@ -43,7 +43,7 @@ export function NavDesktop() {
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[400px] lg:grid-cols-[1fr 1fr]">
                 <ListItem href="/blog" title="Articles">
-                  A list of articles on webdev and programming.
+                  A list of articles on webdev, programming and investing.
                 </ListItem>
                 <ListItem href="/readinglist" title="Reading List">
                   Some books to read that I recommend.
