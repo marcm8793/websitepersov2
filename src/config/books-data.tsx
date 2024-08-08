@@ -62,5 +62,12 @@ export const BOOK_data = {
       theme: "Domains/ Email",
       url: "https://www.freecodecamp.org/news/how-to-set-up-custom-email/",
     },
+    {
+      title: "HTTP/3 explained",
+      author: "Daniel Stenberg",
+      published_year: 2018,
+      theme: "Network",
+      url: "https://http3-explained.haxx.se/",
+    },
   ] as Book[],
 };
