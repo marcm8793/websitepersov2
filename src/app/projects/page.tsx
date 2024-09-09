@@ -21,6 +21,9 @@ import {
   SiAmazons3,
   SiJavascript,
   SiExpress,
+  SiVite,
+  SiFirebase,
+  SiElasticsearch,
 } from "react-icons/si";
 import {
   BiLogoMongodb,
@@ -39,6 +42,23 @@ import { Metadata } from "next";
 import { FaExternalLinkAlt, FaReact, FaGoogle } from "react-icons/fa";
 
 const projects = [
+  {
+    name: "ToolStack",
+    description: "All your tools in one place.",
+    image: "/ToolStack.png",
+    github: "https://github.com/marcm8793/tool-stack-frontend",
+    link: "https://toolstack.pro/",
+    tools: [
+      { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
+      { icon: <SiVite />, tooltip: "Vite" },
+      { icon: <FaReact />, tooltip: "React" },
+      { icon: <SiTailwindcss />, tooltip: "Tailwind CSS" },
+      { icon: <SiRadixui />, tooltip: "Radix/ShadcnUI" },
+      { icon: <SiFirebase />, tooltip: "Firebase" },
+      { icon: <SiZod />, tooltip: "Zod" },
+      { icon: <SiElasticsearch />, tooltip: "Elasticsearch" },
+    ],
+  },
   {
     name: "Event App",
     description: "Event management platform.",
@@ -110,22 +130,6 @@ const projects = [
     image: "/nextapps4.png",
     github: "https://github.com/marcm8793/todonextprod",
     link: "https://www.nextapps.dev/",
-    tools: [
-      { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
-      { icon: <TbBrandNextjs />, tooltip: "Next.js" },
-      { icon: <SiTailwindcss />, tooltip: "Tailwind CSS" },
-      { icon: <SiPrisma />, tooltip: "Prisma" },
-      { icon: <SiRadixui />, tooltip: "Radix/ShadcnUI" },
-      { icon: <SiZod />, tooltip: "Zod" },
-      { icon: <BiLogoPostgresql />, tooltip: "Postgresql" },
-    ],
-  },
-  {
-    name: "Personnal Website",
-    description: "My projects and journey as a developper.",
-    image: "/portfolio2.png",
-    github: "https://github.com/marcm8793/websitepersov2",
-    link: "/",
     tools: [
       { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
       { icon: <TbBrandNextjs />, tooltip: "Next.js" },
