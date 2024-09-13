@@ -4,10 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/cv/command-menu";
 import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { FileTextIcon, GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/config/resume-data";
 import { ProjectCard } from "@/components/cv/project-card";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: `CV`,
@@ -203,6 +204,24 @@ export default function Page() {
           </div>
         </Section>
       </section>
+
+      <div className="mt-8 flex justify-center">
+        <Button
+          className="flex items-center gap-2"
+          variant="outline"
+          size="lg"
+          asChild
+        >
+          <Link
+            href="/CVMM-dev-en.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FileTextIcon className="h-4 w-4" />
+            Open PDF Resume
+          </Link>
+        </Button>
+      </div>
 
       <CommandMenu
         links={[

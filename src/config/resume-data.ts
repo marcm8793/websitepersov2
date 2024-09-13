@@ -6,7 +6,7 @@ export const RESUME_DATA = {
   location: "Paris, France, CET",
   locationLink: "https://www.google.com/maps/place/Paris",
   about:
-    "Project Manager aspiring to contribute positively to developing a more meaningful world through innovative technology.",
+    "Web developer aspiring to contribute positively to developing a more meaningful world through innovative technology.",
   summary:
     "Embarking on a new chapter as a project manager in finance, I am eagerly transitioning into the world of coding. Fueled by a deep passion for technology, I've enrolled in coding bootcamps and online courses to acquire the necessary skills. My vision is to merge my financial expertise with coding, creating innovative solutions and contributing actively to development projects.",
   avatarUrl:
@@ -102,6 +102,22 @@ export const RESUME_DATA = {
   languages: ["French", "English"],
   projects: [
     {
+      title: "ToolStack",
+      techStack: [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Firebase",
+        "Zod",
+        "TailwindCSS",
+      ],
+      description: "All developer tools in one place",
+      link: {
+        label: "toolstack.pro",
+        href: "https://toolstack.pro/",
+      },
+    },
+    {
       title: "NextApps",
       techStack: [
         "Side Project",
@@ -117,16 +133,7 @@ export const RESUME_DATA = {
         href: "https://www.nextapps.dev/",
       },
     },
-    {
-      title: "MemoStash",
-      techStack: ["Side Project", "TypeScript", "Next.js", "Zustand"],
-      description:
-        "All-in-one workspace that combines note-taking & project management into a single, customizable platform.",
-      link: {
-        label: "memostash-lp.vercel.app",
-        href: "https://memostash-lp.vercel.app/",
-      },
-    },
+
     {
       title: "Code Space",
       techStack: [
