@@ -1,0 +1,107 @@
+---
+title: "Deploying a Website: Detailed Steps"
+author: "Marc M."
+publishDate: "10/5/2024"
+---
+
+### Deploying a Website: Detailed Technical Steps
+
+Putting a website online requires following a set of best practices to ensure effective indexing, optimal performance, legal compliance, and proper traffic analysis. Below is a comprehensive guide to the actions you need to take when launching your website.
+
+#### 1. **Indexing on Google Search Console with robots.txt and sitemap**
+
+Indexing is crucial to make sure your site is visible on search engines. Google Search Console is an essential tool for helping Google crawl and index your site. Here are the steps involved:
+
+- **Create a robots.txt file:** The `robots.txt` file is a text file located in the root of your server. It tells search engines which parts of your site can and cannot be crawled. Example:
+
+  ```
+  User-agent: *
+  Disallow: /admin/
+  Sitemap: https://www.yoursite.com/sitemap.xml
+  ```
+
+  The `robots.txt` file should include a link to your sitemap to help Google and other search engines easily discover the structure of your site.
+
+- **Create and submit the sitemap:** A sitemap (usually in XML format) is a file that lists all the important pages of your site. It helps search engines locate content you want indexed. You can use tools to generate your sitemap, then submit it via Google Search Console.
+
+- **Verify indexing status:** After submitting the sitemap, use Google Search Console to verify that your pages are being indexed properly. This will help identify crawl errors like missing pages (404) or incorrect restrictions via `robots.txt`.
+
+#### 2. **Install a CDN**
+
+A Content Delivery Network (CDN) is a geographically distributed network of servers that deliver content quickly to your visitors, regardless of their location. Using a CDN offers several advantages:
+
+- **Performance optimization:** Static content (such as images, CSS, JavaScript) is cached on servers around the world, reducing page load times.
+
+- **Enhanced security:** CDNs can provide protection against DDoS attacks by spreading traffic across multiple servers.
+
+- **Availability:** In case of a failure of your main server, the CDN can help keep your site online.
+
+For setting up a CDN, you can use services like **Cloudflare**, **AWS CloudFront**, or **Fastly**. Once configured, you should redirect your domain's DNS to the CDN so it can handle your content distribution.
+
+#### 3. **Install analytics like Umami**
+
+Analytics are essential for tracking your audience and the effectiveness of your site. **Umami** is a privacy-focused alternative to Google Analytics. Here’s how to proceed:
+
+- **Install Umami:** Umami is self-hosted, so you need a server or a service like Docker for installation. Then, you link your site to Umami by embedding a small JavaScript snippet in the `<head>` of each page.
+
+- **Analyze the data:** Once installed, Umami lets you track visits, popular pages, and session durations while respecting users' privacy (no cookies, no personal data).
+
+#### 4. **Terms of Service and Cookie Policy**
+
+To comply with regulations, particularly the **GDPR** in Europe, it's crucial to have clear terms of service (TOS) and a cookie policy:
+
+- **Terms of Service (TOS):** The TOS describe the rights and obligations of users and your own responsibilities. They should include clauses on liability, intellectual property, and payment conditions if applicable.
+
+- **Cookie Policy:** You must inform your visitors about the cookies used, why they are used, and how they can manage them. A consent banner is often required.
+
+#### 5. **Metadata: JSON-LD for Search Engines**
+
+**JSON-LD** (JavaScript Object Notation for Linked Data) is a structured data format that helps search engines better understand the content of your site. Here’s how to use it:
+
+- **Why use JSON-LD?** It enhances your search results with additional information, such as reviews, events, products, or FAQs. These appear as rich snippets in search results.
+
+- **Implementation:** Add the JSON-LD code to the `<head>` section or right before the closing `</body>` tag of your page. For example:
+  ```html
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Website",
+      "name": "Website Name",
+      "url": "https://www.yoursite.com"
+    }
+  </script>
+  ```
+  Use tools like **Google Rich Results Test** to verify that your JSON-LD tags are valid.
+
+#### 6. **Add Open Graph Tags**
+
+**Open Graph** is a protocol developed by Facebook that allows you to control how your site appears when shared on social media. For optimal presentation:
+
+- **Tags to include:** Place `<meta>` tags in the `<head>` section of your page, for example:
+
+  ```html
+  <meta property="og:title" content="Page Title" />
+  <meta property="og:description" content="Page Description" />
+  <meta property="og:image" content="Image URL" />
+  <meta property="og:url" content="Page URL" />
+  ```
+
+  These tags define the title, description, image, and URL displayed when your content is shared.
+
+- **Optimization:** Make sure the provided image meets the recommended dimensions for social media—usually 1200x630 pixels—to ensure optimal display.
+
+#### 7. **Server Monitoring with Uptime Kuma**
+
+Website uptime is critical for ensuring a good user experience. **Uptime Kuma** is an open-source tool that allows you to monitor the uptime and performance of your server:
+
+- **Installation and setup:** Uptime Kuma can be installed on a Linux server or through Docker. After installation, you can set up "checks" to monitor different URLs, ports, or specific services.
+
+- **Notifications:** Configure notifications to alert you in case of issues. Uptime Kuma can integrate services like Telegram, Slack, or email for real-time alerts.
+
+- **Uptime reports:** These reports help you identify times when your site was offline and take corrective action if needed.
+
+#### Conclusion
+
+Deploying a website involves more than just making it accessible through a browser—it’s about ensuring it’s properly indexed, performing well, secure, and compliant with regulations. By following these steps—from Google indexing using robots.txt and sitemaps to implementing monitoring solutions—you increase your chances of success while delivering a quality user experience.
+
+By taking care of each aspect, you maximize your site's visibility, ensure its performance, and comply with current standards while being prepared to react to potential issues.
