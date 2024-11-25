@@ -22,8 +22,12 @@ export const BOOK_data = {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {row.original.title}
-          <FaExternalLinkAlt />
+          <span className="flex-grow text-balance">{row.original.title}</span>
+          <FaExternalLinkAlt
+            className="ml-2 flex-shrink-0"
+            width={15}
+            height={15}
+          />
         </Link>
       ),
     },
@@ -73,7 +77,7 @@ export const BOOK_data = {
       title: "How to set up Next.js 15 for production in 2024",
       author: "Jan Hesters",
       published_year: 2024,
-      theme: "Next",
+      theme: "Next.js",
       url: "https://www.reactsquad.io/blog/how-to-set-up-next-js-15-for-production",
     },
   ] as Book[],
