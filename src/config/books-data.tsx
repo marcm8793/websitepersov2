@@ -69,5 +69,12 @@ export const BOOK_data = {
       theme: "Network",
       url: "https://http3-explained.haxx.se/",
     },
+    {
+      title: "How to set up Next.js 15 for production in 2024",
+      author: "Jan Hesters",
+      published_year: 2024,
+      theme: "Next",
+      url: "https://www.reactsquad.io/blog/how-to-set-up-next-js-15-for-production",
+    },
   ] as Book[],
 };
