@@ -80,5 +80,12 @@ export const BOOK_data = {
       theme: "Next.js",
       url: "https://www.reactsquad.io/blog/how-to-set-up-next-js-15-for-production",
     },
+    {
+      title: "Essential tsconfig.json options you should use",
+      author: "Duy NG",
+      published_year: 2024,
+      theme: "Typescript",
+      url: "https://tduyng.com/blog/tsconfig-options-you-should-use/",
+    },
   ] as Book[],
 };
