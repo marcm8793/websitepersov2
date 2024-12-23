@@ -87,5 +87,12 @@ export const BOOK_data = {
       theme: "Typescript",
       url: "https://tduyng.com/blog/tsconfig-options-you-should-use/",
     },
+    {
+      title: "Unleash JS's Potential with Functional Programming",
+      author: "Jan Hesters",
+      published_year: 2024,
+      theme: "JavaScript",
+      url: "https://janhesters.com/blog/unleash-javascripts-potential-with-functional-programming?ck_subscriber_id=2185120188",
+    },
   ] as Book[],
 };
