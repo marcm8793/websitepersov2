@@ -13,9 +13,14 @@ async function populatePinecone() {
     apiKey: process.env.PINECONE_API_KEY!,
   });
 
-  console.log(process.env.PINECONE_API_KEY);
-
+  console.log("Connecting to Pinecone...");
   const index = pinecone.Index(process.env.PINECONE_INDEX!);
+
+  // Delete all vectors before adding new ones
+  console.log("Deleting existing vectors...");
+  await index.deleteAll();
+  console.log("All existing vectors deleted successfully!");
+
   const vectorStore = await PineconeStore.fromExistingIndex(
     new OpenAIEmbeddings({ modelName: "text-embedding-3-small" }),
     { pineconeIndex: index }

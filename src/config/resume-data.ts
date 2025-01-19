@@ -11,7 +11,7 @@ export const RESUME_DATA = {
     "Embarking on a new chapter as a project manager in finance, I am eagerly transitioning into the world of coding. Fueled by a deep passion for technology, I've enrolled in coding bootcamps and online courses to acquire the necessary skills. My vision is to merge my financial expertise with coding, creating innovative solutions and contributing actively to development projects.",
   avatarUrl:
     "https://avatars.githubusercontent.com/u/139041349?s=400&u=78fc2e2aa1d2b96e28b59310a647fa987b768f54&v=4",
-  personalWebsiteUrl: "/",
+  personalWebsiteUrl: "https://marcmansour.dev",
   contact: {
     email: "marcm9387@gmail.com",
     tel: "+33688141676",
@@ -23,7 +23,7 @@ export const RESUME_DATA = {
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/marc-mansour-1b938496/",
+        url: "https://linkedin.com/in/marc-mansour2142",
         icon: LinkedInIcon,
       },
       {
