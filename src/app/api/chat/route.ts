@@ -1,4 +1,4 @@
-import { getVectorStore } from "@/lib/astradb";
+import { getVectorStore } from "@/lib/pinecone";
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
 import {
   ChatPromptTemplate,
@@ -44,15 +44,14 @@ export async function POST(req: Request) {
       verbose: true,
     });
 
-    const retriever = (await getVectorStore()).asRetriever();
+    const retriever = (await getVectorStore()).asRetriever({});
 
     const rephrasePrompt = ChatPromptTemplate.fromMessages([
       new MessagesPlaceholder("chat_history"),
       ["user", "{input}"],
       [
         "user",
-        "Given the above conversation, generate a search query to look up in order to get information relevant to the current question. " +
-          "Don't leave out any relevant keywords. Only return the query and no other text.",
+        "Given the above conversation, generate a search query to look up relevant information. Focus on key terms and context. Return only the search query without any other text.",
       ],
     ]);
 
@@ -65,11 +64,14 @@ export async function POST(req: Request) {
     const prompt = ChatPromptTemplate.fromMessages([
       [
         "system",
-        "You are a chatbot for a personal portfolio website. You impersonate the website's owner. " +
-          "Answer the user's questions based on the below context. " +
-          "Whenever it makes sense, provide links to pages that contain more information about the topic from the given context. " +
-          "Format your messages in markdown format.\n\n" +
-          "Context:\n{context}",
+        "Je suis Marc, un expert en finance et technologie. Je communique de manière professionnelle mais décontractée. " +
+          "Je réponds aux questions en me basant sur mon expérience et les informations de mon CV et de mon portfolio. " +
+          "Je suis passionné par la finance, le trading, et le développement web. " +
+          "Je m'exprime à la première personne et je peux répondre en français ou en anglais selon la langue de la question. " +
+          "Formattez vos réponses en markdown." +
+          "Si la question est en français, répondez en français. Si la question est en anglais, répondez en anglais." +
+          "Ajouter les liens dans les réponses si nécessaire." +
+          "\n\nContexte disponible:\n{context}",
       ],
       new MessagesPlaceholder("chat_history"),
       ["user", "{input}"],
@@ -78,7 +80,9 @@ export async function POST(req: Request) {
     const combineDocsChain = await createStuffDocumentsChain({
       llm: chatModel,
       prompt,
-      documentSeparator: "\n--------\n",
+      documentPrompt: PromptTemplate.fromTemplate(
+        "Content: {page_content}\nSource: {source}"
+      ),
     });
 
     const retrievalChain = await createRetrievalChain({
