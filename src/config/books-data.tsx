@@ -94,5 +94,12 @@ export const BOOK_data = {
       theme: "JavaScript",
       url: "https://janhesters.com/blog/unleash-javascripts-potential-with-functional-programming?ck_subscriber_id=2185120188",
     },
+    {
+      title: "What's OAuth2 Anyway?",
+      author: "Roman Glushko",
+      published_year: 2025,
+      theme: "Authentication",
+      url: "https://www.romaglushko.com/blog/whats-aouth2/",
+    },
   ] as Book[],
 };
