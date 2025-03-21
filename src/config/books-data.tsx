@@ -101,5 +101,12 @@ export const BOOK_data = {
       theme: "Authentication",
       url: "https://www.romaglushko.com/blog/whats-aouth2/",
     },
+    {
+      title: "How to Secure a Next.js AI Application Deployed on Vercel",
+      author: "Gideon Akinsanmi",
+      published_year: 2024,
+      theme: "Next.js",
+      url: "https://www.freecodecamp.org/news/how-to-secure-a-nextjs-ai-application-deployed-on-vercel/",
+    },
   ] as Book[],
 };
