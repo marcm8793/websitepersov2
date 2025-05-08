@@ -108,5 +108,12 @@ export const BOOK_data = {
       theme: "Next.js",
       url: "https://www.freecodecamp.org/news/how-to-secure-a-nextjs-ai-application-deployed-on-vercel/",
     },
+    {
+      title: "Visualizing algorithms for rate limiting",
+      author: "smudge.ai",
+      published_year: 2024,
+      theme: "Rate limiting",
+      url: "https://smudge.ai/blog/ratelimit-algorithms",
+    },
   ] as Book[],
 };
