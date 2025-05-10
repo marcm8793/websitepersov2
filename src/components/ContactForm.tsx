@@ -20,14 +20,14 @@ const ContactForm = ({}) => {
   const { toast } = useToast();
   const router = useRouter();
 
-  const sendEmail = (e: any) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     emailjs
       .sendForm(
-        process.env.EMAILJS_SERVICE_ID!,
-        process.env.EMAILJS_TEMPLATE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         form.current!,
-        process.env.EMAILJS_PUBLIC_KEY!
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
       .then(
         (result) => {
@@ -40,6 +40,10 @@ const ContactForm = ({}) => {
         },
         (error) => {
           console.log(error.text);
+          toast({
+            title: "Error!",
+            description: "Your message has not been sent.",
+          });
         }
       );
   };
@@ -54,27 +58,32 @@ const ContactForm = ({}) => {
       </CardHeader>
       <CardContent>
         <form ref={form} onSubmit={sendEmail}>
+          <input type="hidden" name="to_name" value="Marc" />
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="from_name">Name</Label>
               <Input
-                id="name"
+                id="from_name"
                 placeholder="Your name"
                 type="text"
-                name="to_name"
-              />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Email</Label>
-              <Input
-                id="name"
-                placeholder="Your email"
-                type="email"
                 name="from_name"
               />
             </div>
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="from_email">Email</Label>
+              <Input
+                id="from_email"
+                placeholder="Your email"
+                type="email"
+                name="from_email"
+              />
+            </div>
             <div className="grid w-full gap-2 h-50">
-              <Textarea placeholder="Type your message here." name="message" />
+              <Textarea
+                placeholder="Type your message here."
+                name="message"
+                rows={5}
+              />
             </div>
             <Button type="submit">Send message</Button>
           </div>
