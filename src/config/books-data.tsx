@@ -115,5 +115,13 @@ export const BOOK_data = {
       theme: "Rate limiting",
       url: "https://smudge.ai/blog/ratelimit-algorithms",
     },
+    {
+      title:
+        " Robust Data Fetching Architecture For Complex React/Next.js Apps ",
+      author: "Trevor I. Lasn ",
+      published_year: 2025,
+      theme: "Data Fetching",
+      url: "https://www.trevorlasn.com/blog/fetching-data-for-complex-next-and-react-apps",
+    },
   ] as Book[],
 };
