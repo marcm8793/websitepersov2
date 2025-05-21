@@ -35,13 +35,6 @@ export const RESUME_DATA = {
   },
   education: [
     {
-      school: "Le Wagon ",
-      degree: "Web development",
-      badges: ["Developer"],
-      start: "2024",
-      end: "2024",
-    },
-    {
       school: "Université de Limoges",
       degree: "Master 2 (M2) Banques, Risques et Marchés",
       badges: ["Finance"],
@@ -54,6 +47,29 @@ export const RESUME_DATA = {
       badges: ["Finance"],
       start: "2014",
       end: "2015",
+    },
+  ],
+  certifications: [
+    {
+      title: "Next.js App Router Fundamentals",
+      issuer: "Vercel",
+      date: "2025",
+      badges: ["Next.js"],
+      credentialLink: "/certifications/nextjs-fundamentals.pdf",
+    },
+    {
+      title: "IBM Full-Stack JavaScript Developer",
+      issuer: "IBM",
+      date: "2025",
+      badges: ["JavaScript"],
+      credentialLink: "/certifications/Coursera_IBM_FS_JS.pdf",
+    },
+    {
+      title: "Full-Stack Web Development",
+      issuer: "Le Wagon",
+      date: "2024",
+      badges: ["Web Development"],
+      credentialLink: "/certifications/certification-rncp-marc-mansour.pdf",
     },
   ],
   work: [

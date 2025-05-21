@@ -155,6 +155,65 @@ export default function Page() {
             );
           })}
         </Section>
+
+        <Section>
+          <h2 className="text-xl font-bold">Certifications</h2>
+          {RESUME_DATA.certifications.map((certification) => {
+            return (
+              <Card key={certification.title}>
+                <CardHeader>
+                  <div className="flex items-center justify-between gap-x-2 text-base">
+                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
+                      <a
+                        className="hover:underline"
+                        href={certification.credentialLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {certification.title}
+                      </a>
+                      <span className="inline-flex gap-x-1">
+                        {certification.badges.map((badge) => (
+                          <Badge
+                            variant="secondary"
+                            className="align-middle text-xs"
+                            key={badge}
+                          >
+                            {badge}
+                          </Badge>
+                        ))}
+                      </span>
+                    </h3>
+                    <div className="text-sm tabular-nums text-gray-500">
+                      {certification.date}
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="mt-2 flex items-center justify-between">
+                  <span className="font-mono text-sm">
+                    {certification.issuer}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="ml-auto flex items-center gap-1"
+                    asChild
+                  >
+                    <Link
+                      href={certification.credentialLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FileTextIcon className="h-3.5 w-3.5" />
+                      <span className="text-xs">View Certificate</span>
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </Section>
+
         <Section>
           <h2 className="text-xl font-bold">Education</h2>
           {RESUME_DATA.education.map((education) => {
