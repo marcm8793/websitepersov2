@@ -205,8 +205,8 @@ const CodewarsActivity: React.FC<CodewarsActivityProps> = ({
               </div>
             </div>
 
-            <div className="overflow-x-auto">
-              <div className="inline-block min-w-full">
+            <div className="overflow-x-auto flex justify-center">
+              <div className="inline-block">
                 {/* Month labels */}
                 <div className="flex mb-1 ml-8">
                   {months.map((month, index) => (
@@ -214,8 +214,12 @@ const CodewarsActivity: React.FC<CodewarsActivityProps> = ({
                       key={index}
                       className="text-xs text-muted-foreground"
                       style={{
-                        width: `${month.width * 12}px`,
-                        minWidth: "24px",
+                        width: `${
+                          month.width > 0
+                            ? month.width * 14 -
+                              (index === months.length - 1 ? 4 : 0)
+                            : 0
+                        }px`,
                       }}
                     >
                       {month.name}
@@ -226,14 +230,16 @@ const CodewarsActivity: React.FC<CodewarsActivityProps> = ({
                 {/* Grid with day labels */}
                 <div className="flex">
                   {/* Day of week labels */}
-                  <div className="flex flex-col gap-1 mr-2 mt-1">
-                    {["", "Mon", "", "Wed", "", "Fri", ""].map((day, index) => (
-                      <div key={index} className="h-3 flex items-center">
-                        <span className="text-xs text-muted-foreground w-6 text-right">
-                          {day}
-                        </span>
-                      </div>
-                    ))}
+                  <div className="flex flex-col gap-1 mr-2">
+                    {["Sat", "", "Mon", "", "Wed", "", "Fri", ""].map(
+                      (day, index) => (
+                        <div key={index} className="h-2.5 flex items-center">
+                          <span className="text-xs text-muted-foreground w-6 text-right">
+                            {day}
+                          </span>
+                        </div>
+                      )
+                    )}
                   </div>
 
                   {/* Activity grid */}
@@ -244,7 +250,7 @@ const CodewarsActivity: React.FC<CodewarsActivityProps> = ({
                           <Tooltip key={`${weekIndex}-${dayIndex}`}>
                             <TooltipTrigger asChild>
                               <div
-                                className={`w-3 h-3 rounded-sm cursor-pointer hover:ring-2 hover:ring-red-300 transition-all ${
+                                className={`w-2.5 h-2.5 rounded-sm cursor-pointer hover:ring-2 hover:ring-red-300 transition-all ${
                                   day.isCurrentYear
                                     ? getActivityLevel(day.count)
                                     : "bg-gray-50 dark:bg-gray-900"
@@ -399,7 +405,9 @@ function generateGridData(
     d.setDate(d.getDate() + 1)
   ) {
     const dateKey = d.toISOString().split("T")[0];
-    const isCurrentYear = d.getFullYear() === selectedYear;
+    // Parse the dateKey back to get the year in the same timezone as the dateKey
+    const isCurrentYear =
+      new Date(dateKey + "T00:00:00.000Z").getUTCFullYear() === selectedYear;
     const count = activityData[dateKey] || 0;
 
     // Track months
