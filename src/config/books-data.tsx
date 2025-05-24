@@ -123,5 +123,12 @@ export const BOOK_data = {
       theme: "Data Fetching",
       url: "https://www.trevorlasn.com/blog/fetching-data-for-complex-next-and-react-apps",
     },
+    {
+      title: "Toast messages in React Server Components",
+      author: "Ryan Toronto",
+      published_year: 2025,
+      theme: "Next.js",
+      url: "https://buildui.com/posts/toast-messages-in-react-server-components",
+    },
   ] as Book[],
 };
