@@ -61,6 +61,13 @@ const CodewarsActivity: React.FC<CodewarsActivityProps> = ({
     () => generateActivityData(challenges, selectedYear),
     [challenges, selectedYear]
   );
+
+  // Generate all-time activity data for streak calculations
+  const allTimeActivityData = useMemo(
+    () => generateAllTimeActivityData(challenges),
+    [challenges]
+  );
+
   const { weeks, months } = useMemo(
     () => generateGridData(activityData, selectedYear),
     [activityData, selectedYear]
@@ -69,14 +76,17 @@ const CodewarsActivity: React.FC<CodewarsActivityProps> = ({
     () => Object.values(activityData).reduce((sum, count) => sum + count, 0),
     [activityData]
   );
+
+  // Use all-time data for streak calculations
   const maxStreak = useMemo(
     () => calculateMaxStreak(activityData),
     [activityData]
   );
   const currentStreak = useMemo(
-    () => calculateCurrentStreak(activityData),
-    [activityData]
+    () => calculateCurrentStreak(allTimeActivityData),
+    [allTimeActivityData]
   );
+
   const availableYears = useMemo(
     () => getAvailableYears(challenges),
     [challenges]
@@ -496,18 +506,49 @@ function calculateMaxStreak(activityData: Record<string, number>): number {
 }
 
 function calculateCurrentStreak(activityData: Record<string, number>): number {
-  const dates = Object.keys(activityData).sort().reverse();
-  let streak = 0;
+  const today = new Date();
+  const todayKey = today.toISOString().split("T")[0];
 
-  for (const date of dates) {
-    if (activityData[date] > 0) {
+  // Check if there's a contribution today
+  const contributedToday = activityData[todayKey] > 0;
+
+  // Start from today if contributed today, otherwise start from yesterday
+  const startDate = contributedToday
+    ? today
+    : new Date(today.getTime() - 24 * 60 * 60 * 1000);
+
+  let streak = 0;
+  let currentDate = new Date(startDate);
+
+  // Count backwards from the start date
+  while (true) {
+    const dateKey = currentDate.toISOString().split("T")[0];
+
+    if (activityData[dateKey] > 0) {
       streak++;
+      // Move to previous day
+      currentDate.setDate(currentDate.getDate() - 1);
     } else {
       break;
     }
   }
 
   return streak;
+}
+
+function generateAllTimeActivityData(
+  challenges: CompletedChallenge[]
+): Record<string, number> {
+  const activityMap: Record<string, number> = {};
+
+  // Count challenges completed per day across all time
+  challenges.forEach((challenge) => {
+    const challengeDate = new Date(challenge.completedAt);
+    const date = challengeDate.toISOString().split("T")[0];
+    activityMap[date] = (activityMap[date] || 0) + 1;
+  });
+
+  return activityMap;
 }
 
 export default CodewarsActivity;

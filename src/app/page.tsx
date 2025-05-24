@@ -1,4 +1,5 @@
 import CodewarsActivity from "@/components/coding-activity/CodewarsActivity";
+import GitHubActivity from "@/components/coding-activity/GitHubActivity";
 import { Bot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,6 +43,17 @@ export default function Home() {
             sections just by asking the bot!
           </p>
         </div>
+      </div>
+
+      {/* GitHub Activity */}
+      <div className="container mx-auto p-6 space-y-8">
+        <div className="text-center space-y-2">
+          <h1 className="text-3xl font-bold">GitHub Activity</h1>
+          <p className="text-muted-foreground">
+            Track my coding progress and achievements on GitHub
+          </p>
+        </div>
+        <GitHubActivity username="marcm8793" className="max-w-4xl mx-auto" />
       </div>
 
       {/* Codewars Activity */}
