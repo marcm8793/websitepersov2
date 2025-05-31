@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
+import rehypePrettyCode from "rehype-pretty-code";
 
 const contentDir = path.join(process.cwd(), "src/app/blog/_mdx-content");
 
@@ -17,7 +18,40 @@ export async function getBlogBySlug(slug: string) {
       publishDate: string;
     }>({
       source: fileContent,
-      options: { parseFrontmatter: true },
+      options: {
+        parseFrontmatter: true,
+        mdxOptions: {
+          rehypePlugins: [
+            [
+              rehypePrettyCode as any,
+              {
+                theme: {
+                  dark: "github-dark",
+                  light: "github-light",
+                },
+                keepBackground: false,
+                defaultLang: "plaintext",
+                onVisitLine(node: any) {
+                  // Prevent empty lines from collapsing
+                  if (node.children.length === 0) {
+                    node.children = [{ type: "text", value: " " }];
+                  }
+                },
+                onVisitHighlightedLine(node: any) {
+                  if (node.properties.className) {
+                    node.properties.className.push("line--highlighted");
+                  } else {
+                    node.properties.className = ["line--highlighted"];
+                  }
+                },
+                onVisitHighlightedChars(node: any) {
+                  node.properties.className = ["word--highlighted"];
+                },
+              },
+            ],
+          ],
+        },
+      },
     });
 
     return {
@@ -26,6 +60,7 @@ export async function getBlogBySlug(slug: string) {
       slug: path.parse(fileName).name,
     };
   } catch (e) {
+    console.error("Error compiling MDX:", e);
     return notFound();
   }
 }

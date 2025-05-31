@@ -1,4 +1,5 @@
 import createMDX from "@next/mdx";
+import rehypePrettyCode from "rehype-pretty-code";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -19,7 +20,35 @@ const withMDX = createMDX({
   // Add markdown plugins here, as desired
   options: {
     remarkPlugins: [],
-    rehypePlugins: [],
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: {
+            dark: "github-dark",
+            light: "github-light",
+          },
+          keepBackground: false,
+          defaultLang: "javascript",
+          grid: false,
+          onVisitLine(node) {
+            // Prevent lines from collapsing in `display: grid` mode, and
+            // allow empty lines to be copy/pasted
+            if (node.children.length === 0) {
+              node.children = [{ type: "text", value: " " }];
+            }
+          },
+          onVisitHighlightedLine(node) {
+            // Add a class to the highlighted line
+            node.properties.className = ["line", "line--highlighted"];
+          },
+          onVisitHighlightedChars(node) {
+            // Add a class to the highlighted characters
+            node.properties.className = ["word", "word--highlighted"];
+          },
+        },
+      ],
+    ],
   },
 });
 
