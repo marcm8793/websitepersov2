@@ -1,0 +1,337 @@
+---
+title: "5 Common useState Mistakes to Avoid in React"
+author: "Marc M."
+publishDate: "05/31/2025"
+summary: "Learn about the most common useState mistakes that React developers make and how to fix them for better performance and cleaner code."
+---
+
+React's `useState` hook is one of the most fundamental hooks in modern React development. However, even experienced developers can fall into common pitfalls that lead to performance issues, unnecessary re-renders, and confusing code. In this article, we'll explore 5 common useState mistakes and how to avoid them.
+
+## Mistake 1: Calling the Initializer Function
+
+You probably know that you can pass a function to `useState` to give it a default value. This is useful, for example, for loading data from local storage when the component mounts. However, this is wrong:
+
+```javascript
+export function MyComponent() {
+  // ❌ Wrong: This will call the initializer function on every render.
+  const [data, setData] = useState(getInitialData());
+
+  // It's the equivalent of calling the function in the body of the component:
+  // const initialData = getInitialData();
+  // const [data, setData] = useState(initialData);
+}
+```
+
+This will call `getInitialData` on every single render, which can seriously slow down your app. The mistake is that we are calling the function instead of passing a reference.
+
+**The Fix:**
+
+```javascript
+export function MyComponent() {
+  // ✅ Good: Pass a function reference (no parentheses). It will only be called once on initial render.
+  const [data, setData] = useState(getInitialData);
+
+  // ✅ This is also fine:
+  // const [data, setData] = useState(() => getInitialData());
+}
+```
+
+Simply remove the parentheses to pass the function reference instead of calling it immediately.
+
+## Mistake 2: Resetting Component State Incorrectly
+
+Have you ever reset a component's state inside a `useEffect` like this?
+
+```javascript
+export function Profile({ user }: ProfileProps) {
+  const [title, setTitle] = useState("");
+  const [comment, setComment] = useState("");
+
+  // ❌ Bad: This is tedious and causes unnecessary re-renders.
+  useEffect(() => {
+    setTitle("");
+    setComment("");
+  }, [user.id]);
+
+  // ...
+}
+```
+
+This works, but it's pretty bad because:
+
+1. The component first renders with the outdated values and then re-renders with the empty values.
+2. It's difficult to manage. When we add more states, we have to remember to add them to the reset effect.
+
+**The Fix:**
+
+Instead, use the `key` prop. You know keys from rendering lists, but they are also useful for single components because they tell React to throw away the state of a component when the key changes:
+
+```javascript
+export function Profile({ user }: ProfileProps) {
+  return (
+    <UserProfile
+      user={user}
+      // ✅ Good: Changing the key will reset the whole component with all its state.
+      key={user.id}
+    />
+  );
+}
+
+// ✅ Good: Make the key an implementation detail by creating a sub-component that is not exported.
+function UserProfile({ user }: ProfileProps) {
+  const [title, setTitle] = useState("");
+  const [comment, setComment] = useState("");
+
+  // ...
+}
+```
+
+This will reset `title` and `comment` (and any other state within Profile) whenever the user ID changes.
+
+## Mistake 3: When (Not) to Use the State Updater Function
+
+To the setter function of `useState`, you can pass either a value directly or an updater function that receives the previous value:
+
+```javascript
+export function CounterComponent() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    // Pass the new value directly:
+    setCount(count + 1);
+
+    // Or use the functional argument that receives the previous value:
+    setCount((prevCount) => prevCount + 1);
+  }
+}
+```
+
+The function variant helps avoid a slew of problems. Here's a problematic example:
+
+```javascript
+const increment = () => {
+  setCount(count + 1);
+};
+
+<Button
+  onClick={() => {
+    // ❌ Wrong: This will only increment the count by 1 because React batches state updates in the same render.
+    increment();
+    increment();
+    increment();
+  }}
+>
+  +3
+</Button>;
+```
+
+**The Fix:**
+
+```javascript
+const increment = () => {
+  // ✅ Good: Use the functional form of the setter function to always get the latest state.
+  setCount((prevCount) => prevCount + 1);
+};
+
+<Button
+  onClick={() => {
+    increment();
+    increment();
+    increment();
+  }}
+>
+  +3
+</Button>;
+```
+
+However, you don't always need the functional version. As the React docs state: **"Is using an updater always preferred?"**
+
+_You might hear a recommendation to always write code like `setAge(a => a + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary._
+
+_In most cases, there is no difference between these two approaches. React always makes sure that for intentional user actions, like clicks, the `age` state variable would be updated before the next click. This means there is no risk of a click handler seeing a "stale" `age` at the beginning of the event handler._
+
+Use the functional form when:
+
+- You do multiple updates within the same event
+- You're accessing the state variable itself in a way that's inconvenient (you might run into this when optimizing re-renders)
+- If you prefer consistency over slightly more verbose syntax
+
+## Mistake 4: Not Deriving State Correctly
+
+Sometimes you need to calculate a value based on an existing state. Let's say, for example, we have a `firstName` and a `lastName` input, and we want to combine them into a full name. Beginners often create a new state for this and update it inside an effect:
+
+```javascript
+export function MyComponent() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  // ❌ Bad: Redundant state and unnecessary Effect.
+  const [fullName, setFullName] = useState("");
+
+  useEffect(() => {
+    setFullName(firstName + " " + lastName);
+  }, [firstName, lastName]);
+
+  // ...
+}
+```
+
+This is verbose, confusing, and it causes unnecessary re-renders.
+
+**The Fix:**
+
+Instead, you can calculate the value directly in the component body:
+
+```javascript
+export function MyComponent() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  // ✅ Good: Calculate the full name during rendering.
+  const fullName = firstName + " " + lastName;
+
+  // ✅ Also for function calls:
+  const initials = getInitials(firstName, lastName);
+
+  // ✅ Or for map, filter, etc.
+  const lastNameAnonymized = lastName
+    .split("")
+    .map((char, index) => (index < 2 ? char : "*"))
+    .join("");
+
+  // ...
+}
+```
+
+You can even call functions as long as they run fast. If you have an expensive function or you're working with a huge array of data, you should wrap the call in `useMemo`. However, once the React 19 Compiler is out, even this will not be necessary anymore because React will do it automatically!
+
+## Mistake 5: Managing Form State Incorrectly
+
+For complex form handling, I prefer React Hook Form. However, sometimes you want (or need) to do things manually. When you have a form with multiple input fields, please don't do this:
+
+```javascript
+export default function Page() {
+  // ❌ Bad: Using multiple useState hooks for each form field.
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState("");
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = {
+      firstName,
+      lastName,
+      email,
+      street,
+      city,
+      zipCode,
+    };
+    alert("Form submitted: " + JSON.stringify(formData, null, 2));
+  };
+
+  const handleReset = () => {
+    // ⚠️ Managing separate state variables is complex and error-prone.
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setStreet("");
+    setCity("");
+    setZipCode("");
+  };
+
+  const isFormValid = [firstName, lastName, email, street, city, zipCode].every(
+    (value) => value.trim() !== ""
+  );
+
+  return <form onSubmit={handleSubmit}>{/* ... form fields ... */}</form>;
+}
+```
+
+As you can see, having a separate state for each input makes the form hard to manage because you have so many separate values and setters.
+
+**The Fix:**
+
+Instead, put everything into a single state object:
+
+```typescript
+// This is only required if you use TypeScript (which you should)
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  street: string;
+  city: string;
+  zipCode: string;
+}
+
+// Keeping the initial state in a variable makes it easier to reset the form
+const initialFormData: FormData = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  street: "",
+  city: "",
+  zipCode: "",
+};
+
+export default function Page() {
+  // ✅ Good: Using a single useState hook with an object.
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    alert("Form submitted: " + JSON.stringify(formData, null, 2));
+  };
+
+  const handleReset = () => {
+    setFormData(initialFormData);
+  };
+
+  const isFormValid = Object.values(formData).every(
+    (value) => value.trim() !== ""
+  );
+
+  return <form onSubmit={handleSubmit}>{/* ... form fields ... */}</form>;
+}
+```
+
+Now, submitting, resetting, or validating the form state is much easier because we have a single object.
+
+**And this is how you update a value in this form state:**
+
+```javascript
+// You can pass this function to any form field as long as the `name`s match
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = e.target;
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: value,
+  }));
+};
+
+// Usage in JSX:
+<input
+  id="firstName"
+  // The name must be the same as the key in the state object
+  name="firstName"
+  // This is how you display & update the value in the state
+  value={formData.firstName}
+  onChange={handleChange}
+  placeholder="Enter first name"
+/>;
+```
+
+## Conclusion
+
+These five mistakes are incredibly common, even among experienced React developers. By avoiding these pitfalls, you'll write more performant, maintainable, and readable React code:
+
+1. **Pass function references** to useState initializers, don't call them
+2. **Use the key prop** to reset component state instead of useEffect
+3. **Use updater functions** when you need the latest state value or do multiple updates
+4. **Derive state** during rendering instead of storing redundant state
+5. **Group related form state** into objects instead of separate useState calls
+
+Remember, these patterns will help you build better React applications with fewer bugs and better performance. Happy coding!
