@@ -188,7 +188,7 @@ const GitHubActivity: React.FC<GitHubActivityProps> = ({
   }
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={0}>
       <Card className={className}>
         <CardHeader>
           <div className="flex items-center justify-between">

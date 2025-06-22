@@ -188,26 +188,33 @@ export default function Page() {
                       {certification.date}
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="mt-2 flex items-center justify-between">
-                  <span className="font-mono text-sm">
-                    {certification.issuer}
-                  </span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="ml-auto flex items-center gap-1"
-                    asChild
-                  >
-                    <Link
-                      href={certification.credentialLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+
+                  <div className="flex items-center justify-between mt-2">
+                    <h4 className="font-mono text-sm leading-none">
+                      {certification.issuer}
+                    </h4>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="flex items-center gap-1 -mr-2"
+                      asChild
                     >
-                      <FileTextIcon className="h-3.5 w-3.5" />
-                      <span className="text-xs">View Certificate</span>
-                    </Link>
-                  </Button>
+                      <Link
+                        href={certification.credentialLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileTextIcon className="h-3.5 w-3.5" />
+                        <span className="text-xs hidden sm:inline">
+                          View Certificate
+                        </span>
+                        <span className="text-xs sm:hidden">View</span>
+                      </Link>
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent className="mt-1 text-xs">
+                  {certification.description}
                 </CardContent>
               </Card>
             );

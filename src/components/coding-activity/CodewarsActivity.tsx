@@ -129,7 +129,7 @@ const CodewarsActivity: React.FC<CodewarsActivityProps> = ({
   }
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={0}>
       <Card className={className}>
         <CardHeader>
           <div className="flex items-center justify-between">

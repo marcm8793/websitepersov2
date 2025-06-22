@@ -51,11 +51,21 @@ export const RESUME_DATA = {
   ],
   certifications: [
     {
+      title: "Full-Stack Engineer",
+      issuer: "Codecademy",
+      date: "2025",
+      badges: ["Full-Stack Engineer"],
+      credentialLink: "/certifications/swecodecademy.pdf",
+      description:
+        "Full-stack web development. HTML, CSS, JS, React, Node.js, Express, MongoDB, PostgreSQL, Data Structures & Algorithms.",
+    },
+    {
       title: "Next.js App Router Fundamentals",
       issuer: "Vercel",
       date: "2025",
       badges: ["Next.js"],
       credentialLink: "/certifications/nextjs-fundamentals.pdf",
+      description: "Fundamentals of Next.js app router.",
     },
     {
       title: "IBM Full-Stack JavaScript Developer",
@@ -63,6 +73,7 @@ export const RESUME_DATA = {
       date: "2025",
       badges: ["JavaScript"],
       credentialLink: "/certifications/Coursera_IBM_FS_JS.pdf",
+      description: "Full-stack web development focused on JavaScript.",
     },
     {
       title: "Full-Stack Web Development",
@@ -70,6 +81,8 @@ export const RESUME_DATA = {
       date: "2024",
       badges: ["Web Development"],
       credentialLink: "/certifications/certification-rncp-marc-mansour.pdf",
+      description:
+        "Full-stack web development. HTML, CSS, JS, Ruby on Rails, SQL, Git, Heroku.",
     },
   ],
   work: [
