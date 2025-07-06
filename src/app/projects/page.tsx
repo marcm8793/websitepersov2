@@ -24,6 +24,7 @@ import {
   SiVite,
   SiFirebase,
   SiElasticsearch,
+  SiVercel,
 } from "react-icons/si";
 import {
   BiLogoMongodb,
@@ -78,20 +79,20 @@ const projects = [
     ],
   },
   {
-    name: "MM-AI",
-    description: `Chat with Google Gemini AI, \n
-    project hosted on a VPS server with Ubuntu and CloudPanel`,
-    image: "/mmai.png",
-    github: "https://github.com/marcm8793/mm-ai-chat",
-    link: "https://mm-ai.dev/",
+    name: "Simple-Resume",
+    description: `AI resume builder\n
+    Create a professional resume in minutes with AI assistance.`,
+    image: "/simple-resume.png",
+    github: "https://github.com/marcm8793/simple-resume",
+    link: "https://simpleresume.pro/",
     tools: [
-      { icon: <SiJavascript />, tooltip: "JavaScript" },
+      { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
       { icon: <FaReact />, tooltip: "React" },
-      { icon: <SiExpress />, tooltip: "ExpressJS" },
-      { icon: <BiLogoMongodb />, tooltip: "MongoDB" },
-      { icon: <SiMongoose />, tooltip: "Mongoose" },
-      { icon: <FaGoogle />, tooltip: "Google Gemini" },
-      { icon: <FaServer />, tooltip: "VPS Server" },
+      { icon: <BiLogoPostgresql />, tooltip: "Postgresql" },
+      { icon: <SiPrisma />, tooltip: "Prisma" },
+      { icon: <SiVercel />, tooltip: "Vercel" },
+      { icon: <RiOpenaiFill />, tooltip: "OpenAI" },
+      { icon: <FaCcStripe />, tooltip: "Stripe" },
     ],
   },
   {
