@@ -130,5 +130,12 @@ export const BOOK_data = {
       theme: "Next.js",
       url: "https://buildui.com/posts/toast-messages-in-react-server-components",
     },
+    {
+      title: "Representational State Transfer (REST)",
+      author: "Roy Thomas Fielding",
+      published_year: 2000,
+      theme: "API Design",
+      url: "https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm",
+    },
   ] as Book[],
 };
