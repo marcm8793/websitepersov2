@@ -25,13 +25,15 @@ import {
   SiFirebase,
   SiElasticsearch,
   SiVercel,
+  SiTurborepo,
+  SiFastify,
 } from "react-icons/si";
 import {
   BiLogoMongodb,
   BiLogoTypescript,
   BiLogoPostgresql,
 } from "react-icons/bi";
-import { FaCcStripe, FaServer } from "react-icons/fa";
+import { FaCcStripe, FaCloudflare, FaServer } from "react-icons/fa";
 
 import {
   Tooltip,
@@ -43,6 +45,24 @@ import { Metadata } from "next";
 import { FaExternalLinkAlt, FaReact, FaGoogle } from "react-icons/fa";
 
 const projects = [
+  {
+    name: "Savyy",
+    description: "Personnal finance manager.",
+    image: "/savyy.png",
+    github: "https://github.com/marcm8793",
+    link: "https://savyy.net/",
+    tools: [
+      { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
+      { icon: <TbBrandNextjs />, tooltip: "Next.js" },
+      { icon: <SiTailwindcss />, tooltip: "Tailwind CSS" },
+      { icon: <SiTurborepo />, tooltip: "Turborepo" },
+      { icon: <SiZod />, tooltip: "Zod" },
+      { icon: <BiLogoPostgresql />, tooltip: "Postgresql" },
+      { icon: <SiFastify />, tooltip: "Fastify" },
+      { icon: <FaCcStripe />, tooltip: "Stripe" },
+      { icon: <FaCloudflare />, tooltip: "Cloudflare" },
+    ],
+  },
   {
     name: "ToolStack",
     description: "All your tools in one place.",
@@ -58,24 +78,6 @@ const projects = [
       { icon: <SiFirebase />, tooltip: "Firebase" },
       { icon: <SiZod />, tooltip: "Zod" },
       { icon: <SiElasticsearch />, tooltip: "Elasticsearch" },
-    ],
-  },
-  {
-    name: "Event App",
-    description: "Event management platform.",
-    image: "/eventapp.png",
-    github: "https://github.com/marcm8793/eventapp",
-    link: "https://eventapp-livid.vercel.app/",
-    tools: [
-      { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
-      { icon: <TbBrandNextjs />, tooltip: "Next.js" },
-      { icon: <SiTailwindcss />, tooltip: "Tailwind CSS" },
-      { icon: <RiOpenaiFill />, tooltip: "OpenAI" },
-      { icon: <SiZod />, tooltip: "Zod" },
-      { icon: <BiLogoMongodb />, tooltip: "MongoDB" },
-      { icon: <SiMongoose />, tooltip: "Mongoose" },
-      { icon: <FaCcStripe />, tooltip: "Stripe" },
-      { icon: <SiAmazons3 />, tooltip: "S3-UploadThing" },
     ],
   },
   {

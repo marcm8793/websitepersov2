@@ -131,15 +131,24 @@ export const RESUME_DATA = {
   languages: ["French", "English"],
   projects: [
     {
-      title: "ToolStack",
+      title: "Savyy",
       techStack: [
+        "Turborepo",
         "TypeScript",
-        "React",
-        "Vite",
-        "Firebase",
+        "Next.js",
+        "Cloudflare",
+        "Fastify",
         "Zod",
-        "TailwindCSS",
       ],
+      description: "Personnal finance manager",
+      link: {
+        label: "savyy.net",
+        href: "https://savyy.net/",
+      },
+    },
+    {
+      title: "ToolStack",
+      techStack: ["TypeScript", "React", "Firebase", "Zod", "TailwindCSS"],
       description: "All developer tools in one place",
       link: {
         label: "toolstack.pro",
@@ -147,37 +156,19 @@ export const RESUME_DATA = {
       },
     },
     {
-      title: "NextApps",
+      title: "Simple-Resume",
       techStack: [
-        "Side Project",
         "TypeScript",
-        "Next.js",
-        "Vite",
-        "Prisma",
-        "Zod",
-      ],
-      description: "Your productivity dashboard",
-      link: {
-        label: "nextapps.dev",
-        href: "https://www.nextapps.dev/",
-      },
-    },
-
-    {
-      title: "Code Space",
-      techStack: [
-        "Side Project",
         "Next.js",
         "OpenAI",
         "TailwindCSS",
         "Vercel",
-        "MongoDB",
+        "Postgresql",
       ],
-      description:
-        "Coding collaboration platform with AI-powered code answers.",
+      description: "AI resume builder.",
       link: {
-        label: "codespace.forum",
-        href: "https://www.codespace.forum/",
+        label: "simpleresume.pro",
+        href: "https://simpleresume.pro/",
       },
     },
   ],
