@@ -25,10 +25,10 @@ export default function Home() {
           <p className="text-lg mt-4 mb-6 md:text-2xl">
             I&#39;m a{" "}
             <span className="font-semibold text-teal-600">
-              tech enthusiast.{" "}
+              finance & tech enthusiast.{" "}
             </span>
-            Working towards creating web applications that makes life easier and
-            more meaningful.
+            Combining financial expertise with web technologies to create
+            innovative solutions.
           </p>
           <Link
             href="projects"

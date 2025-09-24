@@ -31,7 +31,7 @@ export const docsConfig: DocsConfig = {
     },
     {
       title: "LinkedIn",
-      href: "https://www.linkedin.com/in/marc-mansour-1b938496/",
+      href: "https://www.linkedin.com/in/marc-mansour2142/",
       icon: LinkedInIcon,
     },
     {

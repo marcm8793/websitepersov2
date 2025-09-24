@@ -18,21 +18,20 @@ const page = () => {
       <Separator className="my-4" />
       <div className="text-justify">
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          Hey there! I&apos;m deeply passionate about tech & coding. My interest
-          in programming is a genuine drive that constantly leads me to explore
-          new opportunities in the world of web development.
+          Hey there! I&apos;m passionate about finance and technology. With a
+          background in both worlds, I enjoy creating web solutions that make
+          financial concepts more accessible and interactive.
         </p>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          I firmly believe that our future is becoming increasingly digital, and
-          I want to play an active role in this transformation. I love learning
-          new languages and technologies, and I&apos;m always on the lookout for
-          exciting projects to expand my skills.
+          My journey combines practical finance knowledge with modern web
+          development skills. I believe technology can simplify complex financial
+          processes and help people make better decisions with their money.
         </p>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          When I&apos;m not coding, you&apos;ll probably find me reading about
-          the latest tech trends or learning another JS framework😜. My desire
-          to learn and contribute to the world of technology keeps me motivated
-          every day.
+          When I&apos;m not coding, you&apos;ll find me exploring fintech trends,
+          reading about market innovations, or working on projects that merge
+          financial data with user-friendly interfaces. This intersection keeps
+          me motivated every day.
         </p>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
           Explore my portfolio to discover my web development projects, and feel

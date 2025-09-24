@@ -14,7 +14,7 @@ const Footer = () => (
         </p>
         <div className="flex flex-row items-center justify-center space-x-2 mb-1">
           <a
-            href="https://www.linkedin.com/in/marc-mansour-1b938496/"
+            href="https://www.linkedin.com/in/marc-mansour2142/"
             rel="noreferrer"
             target="_blank"
           >
