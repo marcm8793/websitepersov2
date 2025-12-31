@@ -6,11 +6,7 @@ import {
   PromptTemplate,
 } from "@langchain/core/prompts";
 import { ChatOpenAI } from "@langchain/openai";
-import {
-  LangChainStream,
-  StreamingTextResponse,
-  Message as VercelChatMessage,
-} from "ai";
+import { LangChainAdapter, type Message as VercelChatMessage } from "ai";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { createHistoryAwareRetriever } from "langchain/chains/history_aware_retriever";
 import { createRetrievalChain } from "langchain/chains/retrieval";
@@ -30,12 +26,9 @@ export async function POST(req: Request) {
 
     const currentMessageContent = messages[messages.length - 1].content;
 
-    const { stream, handlers } = LangChainStream();
-
     const chatModel = new ChatOpenAI({
       modelName: "gpt-3.5-turbo",
       streaming: true,
-      callbacks: [handlers],
       verbose: true,
     });
 
@@ -90,12 +83,24 @@ export async function POST(req: Request) {
       retriever: historyAwareRetrieverChain,
     });
 
-    retrievalChain.invoke({
+    const langchainStream = await retrievalChain.stream({
       input: currentMessageContent,
       chat_history: chatHistory,
     });
 
-    return new StreamingTextResponse(stream);
+    // Transform the LangChain stream to extract just the answer text
+    const textStream = new ReadableStream({
+      async start(controller) {
+        for await (const chunk of langchainStream) {
+          if (chunk.answer) {
+            controller.enqueue(chunk.answer);
+          }
+        }
+        controller.close();
+      },
+    });
+
+    return LangChainAdapter.toDataStreamResponse(textStream);
   } catch (error) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });
