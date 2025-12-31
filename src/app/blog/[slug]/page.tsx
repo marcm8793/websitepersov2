@@ -1,6 +1,4 @@
-import React from "react";
 import { getBlogBySlug, getAllBlogSlug } from "@/app/blog/fetchers";
-import { useMDXComponents } from "../../../../mdx-components";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
@@ -9,10 +7,11 @@ import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 
 export async function generateMetadata({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<any> {
+  const { slug } = await params;
   const blog = await getBlogBySlug(slug);
   return {
     title: blog.frontmatter.title,
@@ -26,12 +25,10 @@ export async function generateStaticParams() {
 export default async function BlogPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const blog = await getBlogBySlug(params.slug);
-
-  // Use useMDXComponents to get the custom components
-  const customComponents = useMDXComponents({});
+  const { slug } = await params;
+  const blog = await getBlogBySlug(slug);
 
   return (
     <article className="container relative max-w-3xl py-8 md:py-10 lg:py-10">
@@ -80,9 +77,7 @@ export default async function BlogPage({
         </div>
       </div>
 
-      {React.cloneElement(blog.content as React.ReactElement, {
-        components: customComponents,
-      })}
+      {blog.content}
       <Separator className="my-4" />
       <Link
         href="/blog"

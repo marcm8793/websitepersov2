@@ -3,6 +3,7 @@ import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import rehypePrettyCode from "rehype-pretty-code";
+import { useMDXComponents as getMDXComponents } from "../../../mdx-components";
 
 const contentDir = path.join(process.cwd(), "src/app/blog/_mdx-content");
 
@@ -18,6 +19,7 @@ export async function getBlogBySlug(slug: string) {
       publishDate: string;
     }>({
       source: fileContent,
+      components: getMDXComponents({}),
       options: {
         parseFrontmatter: true,
         mdxOptions: {

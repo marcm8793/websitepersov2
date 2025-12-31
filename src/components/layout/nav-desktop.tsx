@@ -22,12 +22,12 @@ export function NavDesktop() {
           {" "}
           {routes.map((route, index) => (
             <NavigationMenuItem key={index}>
-              <Link href={route.href} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink asChild>
+                <Link href={route.href} className={navigationMenuTriggerStyle()}>
                   {createElement(route.Icon)}
                   {route.title}
-                </NavigationMenuLink>
-              </Link>
+                </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
           ))}
         </NavigationMenuList>
