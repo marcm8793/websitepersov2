@@ -98,22 +98,6 @@ const projects = [
     ],
   },
   {
-    name: "Code Space",
-    description: "Coding collaboration platform with AI-powered code answers.",
-    image: "/CodeSpace.png",
-    github: "https://github.com/marcm8793/devflow",
-    link: "https://www.codespace.forum/",
-    tools: [
-      { icon: <BiLogoTypescript />, tooltip: "TypeScript" },
-      { icon: <TbBrandNextjs />, tooltip: "Next.js" },
-      { icon: <SiTailwindcss />, tooltip: "Tailwind CSS" },
-      { icon: <SiZod />, tooltip: "Zod" },
-      { icon: <BiLogoMongodb />, tooltip: "MongoDB" },
-      { icon: <SiMongoose />, tooltip: "Mongoose" },
-      { icon: <RiOpenaiFill />, tooltip: "OpenAI" },
-    ],
-  },
-  {
     name: "MemoStash",
     description:
       "All-in-one workspace that combines note-taking & project management into a single, customizable platform.",
