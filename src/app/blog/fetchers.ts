@@ -3,6 +3,8 @@ import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 import { useMDXComponents as getMDXComponents } from "../../../mdx-components";
 
 const contentDir = path.join(process.cwd(), "src/app/blog/_mdx-content");
@@ -23,7 +25,9 @@ export async function getBlogBySlug(slug: string) {
       options: {
         parseFrontmatter: true,
         mdxOptions: {
+          remarkPlugins: [remarkGfm],
           rehypePlugins: [
+            rehypeSlug,
             [
               rehypePrettyCode as any,
               {
