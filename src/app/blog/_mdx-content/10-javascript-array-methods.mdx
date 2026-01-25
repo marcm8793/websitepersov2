@@ -1,0 +1,120 @@
+---
+title: "10 JavaScript Array Methods You Should Know"
+author: "Marc M."
+publishDate: "01/25/2026"
+---
+
+**_Essential array methods every JavaScript developer should master for cleaner, more efficient code._**
+
+---
+
+## 1. filter()
+
+The `filter()` method creates a new array with all elements that pass the test implemented by the provided function.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6];
+const evenNumbers = numbers.filter((num) => num % 2 === 0);
+console.log(evenNumbers); // [2, 4, 6]
+```
+
+## 2. forEach()
+
+The `forEach()` method executes a provided function once for each array element.
+
+```javascript
+const fruits = ["apple", "banana", "cherry"];
+fruits.forEach((fruit, index) => {
+  console.log(`${index}: ${fruit}`);
+});
+// 0: apple
+// 1: banana
+// 2: cherry
+```
+
+## 3. some()
+
+The `some()` method tests whether at least one element in the array passes the test implemented by the provided function. It returns a Boolean value.
+
+```javascript
+const ages = [16, 21, 14, 25];
+const hasAdult = ages.some((age) => age >= 18);
+console.log(hasAdult); // true
+```
+
+## 4. every()
+
+The `every()` method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
+
+```javascript
+const scores = [80, 92, 75, 88];
+const allPassed = scores.every((score) => score >= 70);
+console.log(allPassed); // true
+```
+
+## 5. includes()
+
+The `includes()` method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
+
+```javascript
+const colors = ["red", "green", "blue"];
+console.log(colors.includes("green")); // true
+console.log(colors.includes("yellow")); // false
+```
+
+## 6. map()
+
+The `map()` method creates a new array populated with the results of calling a provided function on every element in the calling array.
+
+```javascript
+const prices = [10, 20, 30];
+const withTax = prices.map((price) => price * 1.2);
+console.log(withTax); // [12, 24, 36]
+```
+
+## 7. reduce()
+
+The `reduce()` method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+console.log(sum); // 15
+```
+
+## 8. sort()
+
+The `sort()` method sorts the elements of an array in place and returns the sorted array. The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code unit values.
+
+```javascript
+const numbers = [40, 100, 1, 5, 25];
+// Numeric sort (ascending)
+numbers.sort((a, b) => a - b);
+console.log(numbers); // [1, 5, 25, 40, 100]
+```
+
+## 9. find()
+
+The `find()` method returns the value of the first element in the provided array that satisfies the provided testing function.
+
+```javascript
+const users = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 3, name: "Charlie" },
+];
+const user = users.find((u) => u.id === 2);
+console.log(user); // { id: 2, name: 'Bob' }
+```
+
+## 10. findIndex()
+
+The `findIndex()` method returns the index of the first element in the array that satisfies the provided testing function. Otherwise, it returns -1, indicating that no element passed the test.
+
+```javascript
+const numbers = [5, 12, 8, 130, 44];
+const index = numbers.findIndex((num) => num > 10);
+console.log(index); // 1 (element 12 is at index 1)
+```
+
+---
